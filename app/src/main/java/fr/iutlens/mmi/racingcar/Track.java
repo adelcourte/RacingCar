@@ -1,6 +1,7 @@
 package fr.iutlens.mmi.racingcar;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
 import fr.iutlens.mmi.racingcar.utils.SpriteSheet;
 
@@ -11,24 +12,20 @@ import fr.iutlens.mmi.racingcar.utils.SpriteSheet;
 public class Track {
 
     private int[][] data;
-    private final String DIGITS ="0123456789ABCDEF";
+    private final String DIGITS ="012345";
     // 0123
     // 4567
     // 89AB
     // CDEF
     private final String[] def = {
-            "111111111111",
-            "1111111866A1",
-            "186666A49B51",
-            "14097BFD5451",
-            "14051E77C451",
-            "140511111451",
-            "122211111451",
-            "140511186D51",
-            "1405186D97C1",
-            "140F6D97C111",
-            "1E7777C11111",
-            "111111111111"};
+            "111111111111111",
+            "100000000000001",
+            "100000000000001",
+            "100000000000001",
+            "100000000000001",
+            "100000000000001",
+            "111111111111111",
+    };
 
     private final int char2hex(char c){
         return DIGITS.indexOf(c);
@@ -78,5 +75,17 @@ public class Track {
                 sprite.paint(canvas, data[i][j], j * sprite.w, i * sprite.h);
             }
         }
+    }
+
+    public boolean isValid(float x1, float y1) {
+        if (x1 <0 || x1 >= getSizeX()) return false;
+        if (y1 <0 || y1 >= getSizeY()) return false;
+
+        Log.d("isValid",x1+":"+y1);
+        int x = (int) (x1);
+        int y = (int) (y1);
+        Log.d("isValid",x+":"+y+" "+data[y][x]);
+
+        return  data[y][x] != 1;
     }
 }

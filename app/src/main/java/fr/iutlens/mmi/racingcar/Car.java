@@ -38,10 +38,16 @@ public class Car {
     }
 
 
-    public void update() {
+    public void update(Track track) {
         direction += dd*v*sprite.h;
-        x += (float) ( v*sprite.h*Math.cos(Math.toRadians(direction-90)));
-        y += (float) ( v*sprite.h*Math.sin(Math.toRadians(direction-90)));
+        float x1 = x+(float) (v * sprite.h * Math.cos(Math.toRadians(direction - 90)));
+        float y1 = y+(float) (v * sprite.h * Math.sin(Math.toRadians(direction - 90)));
+        if (track.isValid(x1,y1)) {
+            x = x1;
+            y = y1;
+
+
+        }
 
     }
 
@@ -58,12 +64,16 @@ public class Car {
     }
 
     public void setCommand(double pitch, double roll) {
-        pitch = rescale(pitch,90,15);
+
+        this.v =  0.001f;
+
+        this.direction = 90+(float) Math.toDegrees( -Math.atan2(pitch,roll));
+/*        pitch = rescale(pitch,90,15);
         roll = rescale(roll,90,15);
 
         this.v = (float) (pitch*0.00005);
         this.dd = 0;
         this.dd = (float) (roll/2);
-
+*/
     }
 }

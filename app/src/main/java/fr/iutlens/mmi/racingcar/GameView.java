@@ -1,6 +1,7 @@
 package fr.iutlens.mmi.racingcar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -44,12 +45,12 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
     private void init(AttributeSet attrs, int defStyle) {
 
         // Chargement des feuilles de sprites
-        SpriteSheet.register(R.drawable.circuit,4,4,this.getContext());
+        SpriteSheet.register(R.drawable.lake,3,2,this.getContext());
         SpriteSheet.register(R.drawable.car,3,1,this.getContext());
 
         // Création des différents éléments à afficher dans la vue
-        track = new Track(null,R.drawable.circuit);
-        car = new Car(R.drawable.car,3,8,30);
+        track = new Track(null,R.drawable.lake);
+        car = new Car(R.drawable.car,3,3,30);
 
         // Gestion du rafraichissement de la vue. La méthode update (juste en dessous)
         // sera appelée toutes les 30 ms
@@ -71,7 +72,9 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
     public void update() {
         if (this.isShown()) { // Si la vue est visible
             timer.scheduleRefresh(30); // programme le prochain rafraichissement
-            car.update(); // mise à jour de la position de la voiture
+            car.update(track); // mise à jour de la position de la voiture
+            /*Intent intent = new Intent(this.getContext(),MainActivity.class);
+            getContext().startActivity(intent);*/
             invalidate(); // demande à rafraichir la vue
         }
     }
@@ -109,17 +112,17 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
         // La suite de transfomations est à interpréter "à l'envers"
 
         // On termine par un centrage de l'origine (la voiture donc) dans la fenêtre
-        canvas.translate(getWidth()/2,getHeight()/2);
+        //canvas.translate(getWidth()/2,getHeight()/2);
 
         // On tourne le tout dans le sens inverse à l'angle de la voiture par rapport à la pise
         // Du coup, la voiture sera toujours orientée pareil à l'écran, c'est le décor qui bougera
-        canvas.rotate(-car.direction);
+//        canvas.rotate(-car.direction);
 
         // On mets à l'échelle calculée au dessus
         canvas.scale(scale, scale);
 
         // On centre sur la position actuelle de la voiture (qui se retrouve en 0,0 )
-        canvas.translate(-car.x * track.getTileWidth(),-car.y *track.getTileHeight());
+        //canvas.translate(-car.x * track.getTileWidth(),-car.y *track.getTileHeight());
     }
 
 
