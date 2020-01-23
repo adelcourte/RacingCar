@@ -50,7 +50,7 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
 
         // Création des différents éléments à afficher dans la vue
         track = new Track(null,R.drawable.lake);
-        car = new Car(R.drawable.car,3,3,30);
+        car = new Car(R.drawable.car,0,2,0);
 
         // Gestion du rafraichissement de la vue. La méthode update (juste en dessous)
         // sera appelée toutes les 30 ms
@@ -73,6 +73,11 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
         if (this.isShown()) { // Si la vue est visible
             timer.scheduleRefresh(30); // programme le prochain rafraichissement
             car.update(track); // mise à jour de la position de la voiture
+
+            if (car.win){
+                Intent intent = new Intent(getContext(),MainActivity.class);
+                getContext().startActivity(intent);
+            }
             /*Intent intent = new Intent(this.getContext(),MainActivity.class);
             getContext().startActivity(intent);*/
             invalidate(); // demande à rafraichir la vue
@@ -107,7 +112,7 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
         float tiles_x = (1.0f*getWidth())/track.getTileWidth();
         float tiles_y =  (1.0f*getHeight())/track.getTileHeight();
         float min_tiles = Math.min(tiles_x,tiles_y);
-        float scale = (min_tiles)/7;
+        float scale = (min_tiles)/14;
 
         // La suite de transfomations est à interpréter "à l'envers"
 

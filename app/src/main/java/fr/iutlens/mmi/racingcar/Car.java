@@ -16,6 +16,8 @@ public class Car {
 
     float x,y,direction;
     float v,dd;
+    public boolean win;
+    private int nbPetales;
 
     public Car(int sprite_id, float x, float y, float direction){
         this.x = x;
@@ -37,7 +39,7 @@ public class Car {
         canvas.restore();
     }
 
-
+    // Vérifier si la voiture peut avancer vers la direction souhaitée
     public void update(Track track) {
         direction += dd*v*sprite.h;
         float x1 = x+(float) (v * sprite.h * Math.cos(Math.toRadians(direction - 90)));
@@ -46,7 +48,19 @@ public class Car {
             x = x1;
             y = y1;
 
+            if(track.isPetale(x,y)) {
+                nbPetales = nbPetales + 1;
+                track.set(x,y,0);
+            }
 
+            if(track.isTourbillon(x,y)) {
+                x = 0;
+                y = 2;
+            }
+
+            if (track.isWin(x,y)){
+                win = true;
+            }
         }
 
     }
@@ -65,7 +79,7 @@ public class Car {
 
     public void setCommand(double pitch, double roll) {
 
-        this.v =  0.001f;
+        this.v =  0.0016f;
 
         this.direction = 90+(float) Math.toDegrees( -Math.atan2(pitch,roll));
 /*        pitch = rescale(pitch,90,15);
