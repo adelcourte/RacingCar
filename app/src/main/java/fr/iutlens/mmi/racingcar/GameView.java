@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
     private Track track;
     private Car car;
     private RefreshHandler timer;
+    private Menu menu;
 
     public GameView(Context context) {
         super(context);
@@ -46,11 +48,11 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
 
         // Chargement des feuilles de sprites
         SpriteSheet.register(R.drawable.lake,3,2,this.getContext());
-        SpriteSheet.register(R.drawable.car,3,1,this.getContext());
+        SpriteSheet.register(R.drawable.fish,1,1,this.getContext());
 
         // Création des différents éléments à afficher dans la vue
         track = new Track(null,R.drawable.lake);
-        car = new Car(R.drawable.car,0,2,0);
+        car = new Car(R.drawable.fish,0,2,0);
 
         // Gestion du rafraichissement de la vue. La méthode update (juste en dessous)
         // sera appelée toutes les 30 ms
@@ -72,8 +74,24 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
     public void update() {
         if (this.isShown()) { // Si la vue est visible
             timer.scheduleRefresh(30); // programme le prochain rafraichissement
+            int petale_avant = car.nbPetales;
             car.update(track); // mise à jour de la position de la voiture
 
+            if (petale_avant != car.nbPetales){
+                if (car.nbPetales == 1){
+                    menu.findItem(R.id.action_petal1).setVisible(true);
+                } else if (car.nbPetales == 2){
+                    menu.findItem(R.id.action_petal2).setVisible(true);
+                } else if (car.nbPetales == 3){
+                    menu.findItem(R.id.action_petal3).setVisible(true);
+                    track.set(29,12,0);
+                    track.set(29,12,0);
+                    track.set(29,13,0);
+
+
+                }
+
+            }
             if (car.win){
                 Intent intent = new Intent(getContext(),MainActivity.class);
                 getContext().startActivity(intent);
@@ -135,5 +153,13 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
     public void onOrientationChanged(float[] angle, long stamp) {
         car.setCommand(Math.toDegrees(angle[1]),Math.toDegrees(angle[2]));
 
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
+    public Menu getMenu() {
+        return menu;
     }
 }
