@@ -17,7 +17,7 @@ public class Car {
     float x,y,direction;
     float v,dd;
     public boolean win;
-    private int nbPetales;
+    public int nbPetales;
 
     public Car(int sprite_id, float x, float y, float direction){
         this.x = x;
@@ -33,8 +33,8 @@ public class Car {
         canvas.translate(x*unit_x,y*unit_y);
         canvas.rotate(direction);
         int model = 0;
-        if (dd < -5) model = 1;
-        if (dd > 5) model = 2;
+/*        if (dd < -5) model = 1;
+        if (dd > 5) model = 2;*/
         sprite.paint(canvas,model,-sprite.w/2 , -sprite.h/2);
         canvas.restore();
     }
@@ -47,21 +47,28 @@ public class Car {
         if (track.isValid(x1,y1)) {
             x = x1;
             y = y1;
-
-            if(track.isPetale(x,y)) {
-                nbPetales = nbPetales + 1;
-                track.set(x,y,0);
-            }
-
-            if(track.isTourbillon(x,y)) {
-                x = 0;
-                y = 2;
-            }
-
-            if (track.isWin(x,y)){
-                win = true;
-            }
+        } else if (track.isValid(x1,y)){
+            x= x1;
+        } else if (track.isValid(x,y1)){
+            y = y1;
         }
+
+
+
+        if(track.isPetale(x,y)) {
+            nbPetales = nbPetales + 1;
+            track.set(x,y,0);
+        }
+
+        if(track.isTourbillon(x,y)) {
+            x = 0;
+            y = 2;
+        }
+
+        if (track.isWin(x,y)){
+            win = true;
+        }
+
 
     }
 
@@ -79,7 +86,7 @@ public class Car {
 
     public void setCommand(double pitch, double roll) {
 
-        this.v =  0.0016f;
+        this.v =  0.0010f;
 
         this.direction = 90+(float) Math.toDegrees( -Math.atan2(pitch,roll));
 /*        pitch = rescale(pitch,90,15);

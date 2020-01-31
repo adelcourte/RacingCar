@@ -3,12 +3,15 @@ package fr.iutlens.mmi.racingcar;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import fr.iutlens.mmi.racingcar.utils.OrientationProxy;
 
 public class MainActivity extends AppCompatActivity {
 
     private OrientationProxy proxy;
+    private GameView game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,13 +19,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // On récupère la vue du jeu
-        GameView game = findViewById(R.id.gameView);
+        game = findViewById(R.id.gameView);
 
         // On configure le jeu pour recevoir les changements d'orientation
-        proxy = new OrientationProxy(this,game);
+        proxy = new OrientationProxy(this, game);
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.objectif, menu);
 
+        game.setMenu(menu);
+        return true;
+    }
     @Override
     protected void onResume() {
         super.onResume();
