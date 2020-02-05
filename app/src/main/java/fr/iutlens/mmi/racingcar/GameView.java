@@ -48,7 +48,7 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
 
         // Chargement des feuilles de sprites
         SpriteSheet.register(R.drawable.lake,3,2,this.getContext());
-        SpriteSheet.register(R.drawable.fish,1,1,this.getContext());
+        SpriteSheet.register(R.drawable.fish,3,2,this.getContext());
 
         // Création des différents éléments à afficher dans la vue
         track = new Track(null,R.drawable.lake);
@@ -84,7 +84,7 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
                     menu.findItem(R.id.action_petal2).setVisible(true);
                 } else if (car.nbPetales == 3){
                     menu.findItem(R.id.action_petal3).setVisible(true);
-                    track.set(29,12,0);
+                    track.set(29,11,0);
                     track.set(29,12,0);
                     track.set(29,13,0);
 
@@ -111,7 +111,7 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         // On met une couleur de fond
-        canvas.drawColor(0xff000000);
+        canvas.drawColor(0xffcceeff);
 
         // On choisit la transformation à appliquer à la vue i.e. la position
         // de la "camera"
@@ -127,10 +127,10 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
 
         // On calcul le facteur de zoom nécessaire pour afficher au moins 7 tiles
         // dans chaque direction
-        float tiles_x = (1.0f*getWidth())/track.getTileWidth();
-        float tiles_y =  (1.0f*getHeight())/track.getTileHeight();
+        float tiles_x = (1.0f*getWidth())/track.getTileWidth()/30;
+        float tiles_y =  (1.0f*getHeight())/track.getTileHeight()/14;
         float min_tiles = Math.min(tiles_x,tiles_y);
-        float scale = (min_tiles)/14;
+        float scale = (min_tiles);
 
         // La suite de transfomations est à interpréter "à l'envers"
 
