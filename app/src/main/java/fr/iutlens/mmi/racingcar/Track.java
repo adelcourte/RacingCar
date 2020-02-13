@@ -13,10 +13,6 @@ public class Track {
 
     private int[][] data;
     private final String DIGITS ="012345";
-    // 0123
-    // 4567
-    // 89AB
-    // CDEF
     private final String[] def = {
             "555555555555555555555555555555",
             "000000050000005000050000500005",
