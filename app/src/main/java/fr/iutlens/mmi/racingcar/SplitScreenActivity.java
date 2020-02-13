@@ -22,6 +22,8 @@ public class SplitScreenActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // Essai pour le son
+
     /*public void BagroundSound(View view){
         Intent intent = new Intent(MainActivity.this, BackgroundSound.class);
 
