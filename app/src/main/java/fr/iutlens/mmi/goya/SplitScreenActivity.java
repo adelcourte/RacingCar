@@ -1,6 +1,5 @@
-package fr.iutlens.mmi.racingcar;
+package fr.iutlens.mmi.goya;
 
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;

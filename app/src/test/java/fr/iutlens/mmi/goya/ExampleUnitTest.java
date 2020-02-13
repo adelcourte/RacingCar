@@ -1,4 +1,4 @@
-package fr.iutlens.mmi.racingcar;
+package fr.iutlens.mmi.goya;
 
 import org.junit.Test;
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context="fr.iutlens.mmi.racingcar.SplitScreenActivity"
+    tools:context="fr.iutlens.mmi.goya.SplitScreenActivity"
     android:background="@color/paper">
 
 

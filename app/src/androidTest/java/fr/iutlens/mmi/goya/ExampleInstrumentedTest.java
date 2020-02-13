@@ -1,4 +1,4 @@
-package fr.iutlens.mmi.racingcar;
+package fr.iutlens.mmi.goya;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

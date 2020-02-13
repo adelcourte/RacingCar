@@ -1,20 +1,17 @@
-package fr.iutlens.mmi.racingcar;
+package fr.iutlens.mmi.goya;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
-import java.util.Arrays;
-
-import fr.iutlens.mmi.racingcar.utils.OrientationProxy;
-import fr.iutlens.mmi.racingcar.utils.RefreshHandler;
-import fr.iutlens.mmi.racingcar.utils.SpriteSheet;
-import fr.iutlens.mmi.racingcar.utils.TimerAction;
+import fr.iutlens.mmi.goya.utils.OrientationProxy;
+import fr.iutlens.mmi.goya.utils.RefreshHandler;
+import fr.iutlens.mmi.goya.utils.SpriteSheet;
+import fr.iutlens.mmi.goya.utils.TimerAction;
 
 public class GameView extends View implements TimerAction,  OrientationProxy.OrientationListener {
     private Track track;

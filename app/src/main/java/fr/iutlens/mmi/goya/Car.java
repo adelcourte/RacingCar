@@ -1,8 +1,8 @@
-package fr.iutlens.mmi.racingcar;
+package fr.iutlens.mmi.goya;
 
 import android.graphics.Canvas;
 
-import fr.iutlens.mmi.racingcar.utils.SpriteSheet;
+import fr.iutlens.mmi.goya.utils.SpriteSheet;
 
 /**
  *

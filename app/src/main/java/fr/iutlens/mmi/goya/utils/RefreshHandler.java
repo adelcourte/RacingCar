@@ -1,4 +1,4 @@
-package fr.iutlens.mmi.racingcar.utils;
+package fr.iutlens.mmi.goya.utils;
 
 
 import android.os.Handler;

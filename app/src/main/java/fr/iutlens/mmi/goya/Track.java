@@ -1,9 +1,9 @@
-package fr.iutlens.mmi.racingcar;
+package fr.iutlens.mmi.goya;
 
 import android.graphics.Canvas;
 import android.util.Log;
 
-import fr.iutlens.mmi.racingcar.utils.SpriteSheet;
+import fr.iutlens.mmi.goya.utils.SpriteSheet;
 
 /**
  * Created by dubois on 27/12/2017.

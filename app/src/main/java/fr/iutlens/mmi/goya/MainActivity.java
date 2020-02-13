@@ -1,12 +1,11 @@
-package fr.iutlens.mmi.racingcar;
+package fr.iutlens.mmi.goya;
 
-import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-import fr.iutlens.mmi.racingcar.utils.OrientationProxy;
+import fr.iutlens.mmi.goya.utils.OrientationProxy;
 
 public class MainActivity extends AppCompatActivity {
 
