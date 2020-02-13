@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Goya</string>
+    <color name="paper">#D1D3D0</color>
 </resources>
