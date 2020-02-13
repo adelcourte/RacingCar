@@ -1,5 +1,6 @@
 package fr.iutlens.mmi.racingcar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -59,12 +60,13 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
         timer = new RefreshHandler(this);
 
         // Un clic sur la vue lance (ou relance) l'animation
-        this.setOnClickListener(new OnClickListener() {
+/*        this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!timer.isRunning()) timer.scheduleRefresh(30);
-            }
-        });
+                if (!timer.isRunning()) */
+timer.scheduleRefresh(30);
+/*            }
+        });*/
     }
 
     /**
@@ -73,7 +75,7 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
     @Override
     public void update() {
         if (this.isShown()) { // Si la vue est visible
-            timer.scheduleRefresh(30); // programme le prochain rafraichissement
+            if (!car.win) timer.scheduleRefresh(30); // programme le prochain rafraichissement
             int petale_avant = car.nbPetales;
             car.update(track); // mise à jour de la position de la voiture
 
@@ -84,17 +86,18 @@ public class GameView extends View implements TimerAction,  OrientationProxy.Ori
                     menu.findItem(R.id.action_petal2).setVisible(true);
                 } else if (car.nbPetales == 3){
                     menu.findItem(R.id.action_petal3).setVisible(true);
-                    track.set(29,11,0);
-                    track.set(29,12,0);
-                    track.set(29,13,0);
+                    track.set(29,11,3);
+                    track.set(29,12,3);
+                    track.set(29,13,3);
 
 
                 }
 
             }
             if (car.win){
-                Intent intent = new Intent(getContext(),MainActivity.class);
+                Intent intent = new Intent(getContext(),SplitScreenActivity.class);
                 getContext().startActivity(intent);
+                ((Activity) getContext()).finish();
             }
             /*Intent intent = new Intent(this.getContext(),MainActivity.class);
             getContext().startActivity(intent);*/
